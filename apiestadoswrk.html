@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <table>
+            <!-- navegamos por el diccionario recibido -->
+            {% for k, v in datos.items() %}
+                <tr>
+                    <th>Trabajar con API - ESTADOS</th>
+                </tr>
+                <!-- obtenemos el diccionario dentro de la lista -->
+                {% for elemento in v %}
+                    <tr>
+                    <!-- obtenemos la clave y el contenido del diccionario -->
+                    {% for ke, ve in elemento.items() %}
+                            <!-- mientras la clave no sea (btn los botones a viasualizar) son campos -->
+                            {% if ke != 'btn' %}
+                                <!-- si dentro del diccionario esta la clave hidden -->
+                                {% if 'hidden' in ve %}
+                                    <td hidden="hidden"  name="{{ ve['name'] }}">()</td>
+                                <!-- si dentro del diccionario No esta la clave hidden -->
+                                {% else %}
+                                    <td placeholder= "{{ ve['placeholder'] }}" name="{{ ve['name'] }}">{{ ve['value'] }}</td>
+                                {% endif %}
+                            <!-- si la clave sea (btn los botones a viasualizar) -->
+                            {% else %}
+                                <!-- obtenemos el diccionario dentro de la lista -->
+                                {% for elbtn in ve %}
+                                    <!-- obtenemos la clave y el contenido oel diccionario -->
+                                    {% for kbt, vbt in elbtn.items() %}
+                                        {% if kbt == 'name' %}
+                                            <td><button class="bt3">--{{ vbt }}--</button></td>
+                                        {% else %}
+                                            <td>{{ vbt }}</td>>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endif %}
+                    {% endfor %}
+                    </tr>
+               {% endfor %}
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
